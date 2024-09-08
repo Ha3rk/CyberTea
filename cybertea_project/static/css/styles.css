@@ -1,0 +1,95 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+a {
+    text-decoration: None;
+    color: #333;
+    
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: #009e1a;
+    color: #fff;
+    padding: 20px 0;
+}
+
+header .logo {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+header .logo a {
+    color: #fff;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #009e1a;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+footer .socials {
+    list-style-type: none;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+footer .socials li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+footer .socials li a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer .socials li a:hover {
+    color: #f2961d; /* Twitter blue color, for example */
+}

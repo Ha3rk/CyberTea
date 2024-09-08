@@ -1,0 +1,21 @@
+{% extends 'cyberevents/base.html' %}
+
+{% load static %}
+
+
+{% block title %}Category List{% endblock %}
+
+{% block content %}
+
+    
+    
+    <div class="category-container">
+        {% for category in categories %}
+        <div class="card">
+            <img src="{{ category.image }}" alt="{{ category.id }}">
+            <div class="card-title">{{ category.title }}</div>
+        </div>
+        {% endfor %}
+    <img src="{% static 'images/europe41_Gma7AYa.png' %}" alt="img">
+
+{% endblock %}

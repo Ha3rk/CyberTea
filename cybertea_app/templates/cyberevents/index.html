@@ -1,81 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CyberTea - Cybersecurity News</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-    <div class="jumbotron">
-        <center>
-            <h1>CyberTea</h1>
-            <a href="/" class="btn btn-danger">Refresh News</a>
-        </center>
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div>
+    <center>
+        <a href="/" class="btn btn-danger">Update feed</a>
+    </center>
+</div>
+
+<div class="container">
+    <div>
+        <h3>News from Kreb's</h3>
+        {% for n in krebs_news %}
+        <h5> - {{ n }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
     </div>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="text-center">News from Kreb's</h3>
-                {% for n in krebs_news %}
-                <h5> - {{ n }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
 
-            <div class="col-md-6">
-                <h3 class="text-center">News from Dark Reading</h3>
-                {% for htn in darkreading_news %}
-                <h5> - {{ htn }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="text-center">News from The Hacker News</h3>
-                {% for hn in hackernews_news %}
-                <h5> - {{ hn }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <h3 class="text-center">News from Bleeping Computer</h3>
-                {% for bc in bleepingcomputer_news %}
-                <h5> - {{ bc }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="text-center">News from SecurityWeek</h3>
-                {% for sw in securityweek_news %}
-                <h5> - {{ sw }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <h3 class="text-center">News from Threatpost</h3>
-                {% for tp in threatpost_news %}
-                <h5> - {{ tp }} </h5>
-                <hr>
-                {% endfor %}
-                <br>
-            </div>
-        </div>
+    <div>
+        <h3>News from Dark Reading</h3>
+        {% for htn in darkreading_news %}
+        <h5> - {{ htn }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
     </div>
-    
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>
+
+<div>
+    <div>
+        <h3>News from The Hacker News</h3>
+        {% for hn in hackernews_news %}
+        <h5> - {{ hn }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
+    </div>
+
+    <div>
+        <h3>News from Bleeping Computer</h3>
+        {% for bc in bleepingcomputer_news %}
+        <h5> - {{ bc }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
+    </div>
+</div>
+
+<div>
+    <div>
+        <h3>News from SecurityWeek</h3>
+        {% for sw in securityweek_news %}
+        <h5> - {{ sw }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
+    </div>
+
+    <div>
+        <h3>News from Threatpost</h3>
+        {% for tp in threatpost_news %}
+        <h5> - {{ tp }} </h5>
+        <hr>
+        {% endfor %}
+        <br>
+    </div>
+</div>
+
+{% endblock %}

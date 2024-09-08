@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
+from .models import Category
 import requests
 
 # Function to get news from Krebs on Security
 def get_krebs_news():
     krebs_news = []
     try:
-        krebs_r = requests.get("https://krebsonsecurity.com/")
+        krebs_r = requests.get("https://krebsonsecurity.com/", timeout=10)  # Set a timeout
         krebs_r.raise_for_status()
 
         krebs_soup = BeautifulSoup(krebs_r.content, 'html5lib')
         krebs_headings = krebs_soup.find_all('h2', {"class": "entry-title"})
-        
         for kh in krebs_headings:
             krebs_news.append(kh.text.strip())
     except requests.exceptions.RequestException as e:
@@ -23,7 +23,7 @@ def get_krebs_news():
 def get_darkreading_news():
     darkreading_news = []
     try:
-        dr_r = requests.get("https://www.darkreading.com/")
+        dr_r = requests.get("https://www.darkreading.com/", timeout=10)
         dr_r.raise_for_status()
 
         dr_soup = BeautifulSoup(dr_r.content, 'html5lib')
@@ -40,7 +40,7 @@ def get_darkreading_news():
 def get_hackernews_news():
     hackernews_news = []
     try:
-        hn_r = requests.get("https://thehackernews.com/")
+        hn_r = requests.get("https://thehackernews.com/", timeout=10)
         hn_r.raise_for_status()
 
         hn_soup = BeautifulSoup(hn_r.content, 'html5lib')
@@ -57,7 +57,7 @@ def get_hackernews_news():
 def get_bleepingcomputer_news():
     bleepingcomputer_news = []
     try:
-        bc_r = requests.get("https://www.bleepingcomputer.com/")
+        bc_r = requests.get("https://www.bleepingcomputer.com/", timeout=10)
         bc_r.raise_for_status()
 
         bc_soup = BeautifulSoup(bc_r.content, 'html5lib')
@@ -74,7 +74,7 @@ def get_bleepingcomputer_news():
 def get_securityweek_news():
     securityweek_news = []
     try:
-        sw_r = requests.get("https://www.securityweek.com/")
+        sw_r = requests.get("https://www.securityweek.com/", timeout=10)
         sw_r.raise_for_status()
 
         sw_soup = BeautifulSoup(sw_r.content, 'html5lib')
@@ -91,7 +91,7 @@ def get_securityweek_news():
 def get_threatpost_news():
     threatpost_news = []
     try:
-        tp_r = requests.get("https://threatpost.com/")
+        tp_r = requests.get("https://threatpost.com/", timeout=10)
         tp_r.raise_for_status()
 
         tp_soup = BeautifulSoup(tp_r.content, 'html5lib')
@@ -104,6 +104,7 @@ def get_threatpost_news():
     
     return threatpost_news
 
+
 def index(request):
     # Fetch news from all cybersecurity sources
     krebs_news = get_krebs_news()
@@ -112,6 +113,7 @@ def index(request):
     bleepingcomputer_news = get_bleepingcomputer_news()
     securityweek_news = get_securityweek_news()
     threatpost_news = get_threatpost_news()
+
 
     # Render the data in the template
     return render(request, 'cyberevents/index.html', {
@@ -122,3 +124,30 @@ def index(request):
         'securityweek_news': securityweek_news,
         'threatpost_news': threatpost_news,
     })
+
+
+def base(request):
+    # Fetch news from all cybersecurity sources
+    krebs_news = get_krebs_news()
+    darkreading_news = get_darkreading_news()
+    hackernews_news = get_hackernews_news()
+    bleepingcomputer_news = get_bleepingcomputer_news()
+    securityweek_news = get_securityweek_news()
+    threatpost_news = get_threatpost_news()
+
+
+    # Render the data in the template
+    return render(request, 'cyberevents/base.html', {
+        'krebs_news': krebs_news,
+        'darkreading_news': darkreading_news,
+        'hackernews_news': hackernews_news,
+        'bleepingcomputer_news': bleepingcomputer_news,
+        'securityweek_news': securityweek_news,
+        'threatpost_news': threatpost_news,
+    })
+def category_list(request):
+    categories = Category.objects.all() 
+    return render(request, 'parts/category_list.html', {'categories': categories})
+
+def about(request):
+    return render(request, 'cyberevents/about.html', {'about': about})
