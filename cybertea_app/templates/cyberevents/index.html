@@ -3,66 +3,32 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div>
-    <center>
-        <a href="/" class="btn btn-danger">Update feed</a>
-    </center>
-</div>
+
 
 <div class="container">
     <div>
+        <br><br>
+    </div>
+    <div>
+        <center>
+            <a href="/" class="btn">Update feed</a>
+        </center>
+    </div>
+    <br>
+    
+    <div>
         <h3>News from Kreb's</h3>
         {% for n in krebs_news %}
-        <h5> - {{ n }} </h5>
+        <h5> 🇳🇬  {{ n }} </h5>
         <hr>
         {% endfor %}
         <br>
     </div>
 
-    <div>
-        <h3>News from Dark Reading</h3>
-        {% for htn in darkreading_news %}
-        <h5> - {{ htn }} </h5>
-        <hr>
-        {% endfor %}
-        <br>
-    </div>
-</div>
-
-<div>
     <div>
         <h3>News from The Hacker News</h3>
         {% for hn in hackernews_news %}
-        <h5> - {{ hn }} </h5>
-        <hr>
-        {% endfor %}
-        <br>
-    </div>
-
-    <div>
-        <h3>News from Bleeping Computer</h3>
-        {% for bc in bleepingcomputer_news %}
-        <h5> - {{ bc }} </h5>
-        <hr>
-        {% endfor %}
-        <br>
-    </div>
-</div>
-
-<div>
-    <div>
-        <h3>News from SecurityWeek</h3>
-        {% for sw in securityweek_news %}
-        <h5> - {{ sw }} </h5>
-        <hr>
-        {% endfor %}
-        <br>
-    </div>
-
-    <div>
-        <h3>News from Threatpost</h3>
-        {% for tp in threatpost_news %}
-        <h5> - {{ tp }} </h5>
+        <h5> 🇱🇹  {{ hn }} </h5>
         <hr>
         {% endfor %}
         <br>

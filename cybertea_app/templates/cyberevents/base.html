@@ -6,19 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybertea</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="{% static 'images/logo.png' %}" alt="img">
+            
+            <div class="logo"><img src="{% static 'images/zlogo.png' %}" alt="img">
                 <a href="#">CyberTea</a>
             </div>
             <nav>
                 <ul>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'incident_stats' %}">Incident Stats</a></li>
+
 
                 </ul>
             </nav>

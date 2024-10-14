@@ -1,3 +1,51 @@
+/* Header */
+header {
+    background: linear-gradient(90deg, #800080, #d87e2b);    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
+}
+
+header .logo {
+    display: inline-block;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+
+header .logo a {
+    position: absolute;
+    top: 30px; 
+    left: 95px; 
+    z-index: 10; 
+    color: rgb(245, 237, 222, 0.99)}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: #e99e48;
+}
+
 /* General Styles */
 body, html {
     margin: 0;
@@ -17,53 +65,23 @@ a {
     width: 80%;
     margin: 0 auto;
 }
-
-/* Header */
-header {
-    background-color: #009e1a;
-    color: #fff;
-    padding: 20px 0;
-}
-
-header .logo {
-    display: inline-block;
-    font-size: 1.5em;
+.btn {
+    color: #830000;
     font-weight: bold;
-}
-
-header .logo a {
-    color: #fff;
-}
-
-header nav {
-    float: right;
-}
-
-header nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline-block;
-    margin-left: 20px;
-}
-
-header nav ul li a {
-    color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+h5 .line{
+ color: #800080
 
-header nav ul li a:hover {
-    background-color: #555;
 }
+
+
 
 /* Footer */
 footer {
-    background-color: #009e1a;
+    background: linear-gradient(90deg, #c06209, #5e0283);    color: #fff;
     color: #fff;
     padding: 20px 0;
     text-align: center;
