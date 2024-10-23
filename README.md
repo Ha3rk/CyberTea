@@ -1,2 +1,2 @@
 # CyberTea
-Cybersecurity Event Aggregator App with Artificial Intelligence Keypoint Narration Feature
+An Ai-powered community platform providing Cybersecurity news agreegatoion, narration, and real-time incident display dashboard.
