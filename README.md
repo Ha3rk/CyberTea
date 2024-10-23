@@ -1,4 +1,5 @@
 Here's a fun and emoji-enhanced version of your description:
+
 🛡☕  CyberTea
 
 An AI-powered community platform providing:
