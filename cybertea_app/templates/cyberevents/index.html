@@ -4,35 +4,79 @@
 
 {% block content %}
 
-
 <div class="container">
-    <div>
-        <br><br>
-    </div>
-    <div>
-        <center>
-            <a href="/" class="btn">Update feed</a>
-        </center>
-    </div>
     <br>
     
-    <div>
-        <h3>News from Kreb's</h3>
+    <div class="news-section">
+        <h3>☕ News from Kreb's</h3>
         {% for n in krebs_news %}
-        <h5> 🇳🇬  {{ n }} </h5>
-        <hr>
+            <div class="news-item">
+                <h5><a href="{{ n.url }}">{{ n.title }}</a>
+                    <button class=" summary-button" data-url="{{ n.url }}">Go</button>
+                </h5>
+                <hr>
+            </div>
         {% endfor %}
-        <br>
     </div>
-
-    <div>
-        <h3>News from The Hacker News</h3>
+    <br>
+    <div class="news-section">
+        <h3>☕ News from The Hacker News</h3>
         {% for hn in hackernews_news %}
-        <h5> 🇱🇹  {{ hn }} </h5>
-        <hr>
+            <div class="news-item">
+                <h5><a href="{{ hn.url }}">{{ hn.title }}</a>
+                    <button class=" summary-button" data-url="{{ hn.url }}">Go</button>
+                </h5>
+                <hr>
+            </div>
         {% endfor %}
-        <br>
     </div>
 </div>
+
+<!-- Modal for showing summary -->
+<div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="summaryModalLabel">Article Summary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="summary-content"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        // Handle click event on the summarize button
+        $('.summary-button').on('click', function(event){
+            event.preventDefault();
+
+            let articleUrl = $(this).data('url');
+            
+            // Make AJAX request to get the summary
+            $.ajax({
+                url: '{% url "get_article_summary" %}',  // Ensure this URL pattern exists
+                method: 'POST',
+                data: {
+                    'url': articleUrl,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token
+                },
+                success: function(response) {
+                    // Show the summary in the modal
+                    $('#summary-content').text(response.summary);
+                    $('#summaryModal').modal('show');
+                },
+                error: function() {
+                    alert('Error fetching article summary');
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

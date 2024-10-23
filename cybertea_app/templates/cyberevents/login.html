@@ -1,19 +1,22 @@
 {% extends './base.html' %}
-
-{% block title %}About Us{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %}Login Account {% endblock %}
 
 {% block content %}
 <main>
-    <section>
-        <h2>About Us</h2>
+    <form action='login' method="POST" >
         <br>
-        <p>AI-Powered News Aggregator with Keypoint Narration: 
-           An app that gathers news from multiple sources and uses
-           artificial intelligence to provide narrated summaries 
-           and explanations of key events.</p>
-           <br>
-           <br>
-           <br>
-    </section>
+        <br>
+        <br>
+        {% csrf_token %}
+        {{ login }}
+        <input type="submit" value="Sign in">
+    </form>
+
+    <div>
+    <p>Don't have an Account yet? <a href = "{% url 'register' %}">Register</a></p>
+
+    </div>
+    <br>
 </main>
 {% endblock %}

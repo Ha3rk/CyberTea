@@ -1,9 +1,21 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 from .models import Category
+from django.http import JsonResponse
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 import requests
+import openai
+# Set your OpenAI API key
+openai.api_key = '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'
 
-# Function to get news from Krebs on Security
+
+
+
+# Registration Form
+
+
+
+# Function to get news from Krebs on Security with URLs
 def get_krebs_news():
     krebs_news = []
     try:
@@ -13,13 +25,14 @@ def get_krebs_news():
         krebs_soup = BeautifulSoup(krebs_r.content, 'html5lib')
         krebs_headings = krebs_soup.find_all('h2', {"class": "entry-title"})
         for kh in krebs_headings:
-            krebs_news.append(kh.text.strip())
+            title = kh.text.strip()
+            url = kh.find('a')['href']  # Extract the URL from the headline
+            krebs_news.append({'title': title, 'url': url})
     except requests.exceptions.RequestException as e:
         print(f"Error fetching Krebs on Security news: {e}")
     
     return krebs_news
 
-# Function to get news from The Hacker News
 def get_hackernews_news():
     hackernews_news = []
     try:
@@ -30,7 +43,15 @@ def get_hackernews_news():
         hn_headings = hn_soup.find_all('h2', {"class": "home-title"})
 
         for hnh in hn_headings:
-            hackernews_news.append(hnh.text.strip())
+            title = hnh.text.strip()
+            a_tag = hnh.find('a')  # Find the anchor tag
+            if a_tag and 'href' in a_tag.attrs:  # Ensure 'a' tag and href exist
+                url = a_tag['href']  # Extract the URL from the anchor tag
+                hackernews_news.append({'title': title, 'url': url})
+            else:
+                # If no URL, skip or append without the URL
+                hackernews_news.append({'title': title, 'url': None})
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching The Hacker News: {e}")
     
@@ -41,7 +62,6 @@ def index(request):
     # Fetch news from all cybersecurity sources
     krebs_news = get_krebs_news()
     hackernews_news = get_hackernews_news()
-
 
     # Render the data in the template
     return render(request, 'cyberevents/index.html', {
@@ -60,6 +80,8 @@ def base(request):
         'krebs_news': krebs_news,
         'hackernews_news': hackernews_news,
     })
+
+
 def category_list(request):
     categories = Category.objects.all() 
     return render(request, 'parts/category_list.html', {'categories': categories})
@@ -71,7 +93,51 @@ def incident_stats(request):
     return render(request, 'cyberevents/incident_stats.html', {'incident_stats': incident_stats})
 
 def login(request):
+    login = AuthenticationForm()
     return render(request, 'cyberevents/login.html', {'login': login})
 
 def register(request):
-    return render(request, 'cyberevents/register.html', {'register': register})
+    form = UserCreationForm()
+    return render(request,'cyberevents/register.html', {'form': form})
+
+
+# Function to fetch article content and summarize it using GPT
+def summarize_article(request):
+    if request.method == 'POST':
+        article_url = request.POST.get('url')
+        try:
+            # Fetch the article content
+            response = requests.get(article_url, timeout=10)
+            response.raise_for_status()
+            article_html = response.content
+
+            # Use BeautifulSoup to extract the main content (simplified)
+            soup = BeautifulSoup(article_html, 'html.parser')
+            article_text = " ".join([p.text for p in soup.find_all('p')])  # Fetch all paragraphs
+
+            # Send the article content to GPT for summarization
+            summary = summarize_with_gpt(article_text)
+
+            # Return the summary as a JSON response
+            return JsonResponse({'summary': summary})
+
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({'error': 'Error fetching article: ' + str(e)}, status=500)
+
+def summarize_with_gpt(article_text):
+    """Use GPT API to summarize the article"""
+    try:
+        response = openai.ChatCompletion.create(  # Correct method
+            model="gpt-3.5-turbo",  # Specify the model
+            messages=[
+                {"role": "system", "content": "Summarize the following article."},
+                {"role": "user", "content": article_text}
+            ],
+            max_tokens=100  # Set max tokens for the summary
+        )
+
+        summary = response['choices'][0]['message']['content'].strip()
+        return summary
+
+    except Exception as e:
+        return f"Error during summarization: {str(e)}"
