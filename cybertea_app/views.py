@@ -6,9 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 import requests
 import openai
 # Set your OpenAI API key
-openai.api_key = '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'
-
-
+openai.api_key = ''
 
 
 # Registration Form
