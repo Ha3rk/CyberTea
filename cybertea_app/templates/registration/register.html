@@ -1,0 +1,31 @@
+{% extends 'cyberevents/base.html' %}
+{% block title %}Create New Account {% endblock %}
+
+{% block content %}
+<main>
+<body>
+    <h2>Registration Form</h2>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+
+
+    <div>
+    <p>Already have an Account? <a href = "{% url 'login' %}">Login</a></p>
+
+    </div>
+    <br>
+</main>
+{% endblock %}

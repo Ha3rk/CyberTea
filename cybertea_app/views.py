@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup
 from .models import Category
 from django.http import JsonResponse
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 import requests
 import openai
+from django.contrib import messages
+from .forms import LoginForm, RegistrationForm 
+from django.contrib.auth import authenticate, login as auth_login
+
 # Set your OpenAI API key
 
 
@@ -91,12 +94,39 @@ def incident_stats(request):
     return render(request, 'cyberevents/incident_stats.html', {'incident_stats': incident_stats})
 
 def login(request):
-    login = AuthenticationForm()
-    return render(request, 'cyberevents/login.html', {'login': login})
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                auth_login(request, user)  
+                messages.success(request, 'You are now logged in.')
+                return redirect('index') 
+            else:
+                messages.error(request, 'Invalid username or password.')
+    else:
+        login_form = LoginForm()
+
+    return render(request, 'registration/login.html', {'login_form': login_form})
+
 
 def register(request):
-    form = UserCreationForm()
-    return render(request,'cyberevents/register.html', {'form': form})
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])  # Set the password
+            user.save()
+            messages.success(request, 'Registration successful.')
+            return redirect('login')  # Redirect to a login page or any other page
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
 
 
 # Function to fetch article content and summarize it using GPT

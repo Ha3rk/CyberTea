@@ -1,14 +1,16 @@
 /* Header */
 header {
-    background: linear-gradient(90deg, #800080, #d87e2b);    color: #fff;
+  /**  background: linear-gradient(90deg, #800080, #d87e2b);    color: #fff;*/
+    background-color: rgba(255, 255, 255, 0.116);
     padding: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow here */
 }
 
 header .logo {
     display: inline-block;
-    font-size: 1.35rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    font-family: 'helvetica', sans-serif;
 }
 
 
@@ -17,7 +19,7 @@ header .logo a {
     top: 30px; 
     left: 95px; 
     z-index: 10; 
-    color: rgb(245, 237, 222, 0.99)}
+    color: #ffffff}
 
 header nav {
     float: right;
@@ -27,7 +29,11 @@ header nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex
+    display: flex;
+    font-weight: 500;
+    font-size: 1.0rem;
+
+
 }
 
 header nav ul li {
@@ -36,7 +42,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #ffffff;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -47,23 +53,40 @@ header nav ul li a:hover {
 }
 
 /* General Styles */
+
+
+
+.domine{
+  font-family: "Domine", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
+    background-color: #0b1b2b;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight:normal;
 }
 
 a {
     text-decoration: None;
-    color: #333;
+    color: #ffffff;
     
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
+}
+p {
+    text-decoration: None;
+    color: #ffffff;
+    
 }
 .btn {
     color: #800080;
@@ -72,9 +95,37 @@ a {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+
+h1 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(250, 249, 249, 0.849);
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+h1:hover {
+    transform: scale(1.05);
+}
+
+h2 {
+    text-decoration: None;
+    color: #ffffff;
+    
+}
 h5 .line{
  color: #800080
 
+}
+h3 {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    color: rgba(250, 249, 249, 0.849);
 }
 
 hr {
@@ -85,21 +136,33 @@ hr {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow */
 }
 
+div #summary-content{
+    color: rgba(250, 249, 249);
+
+}
+
+div #summaryModalLabel{
+
+    color: rgba(250, 249, 249);
+
+}
+
 .summary-button {
 
 border-radius: 10px;
 padding: 3px 5px;
-background-color: #800080;
-color: #fff;
-transition: background-color #e99e48 0.3s ease;
+background-color: rgba(247, 247, 247, 0);
+color: #3af800f6;
+transition: background-color #ffffff 0.3s ease;
+font-weight: 900;
 
 }
 
-
 /* Footer */
 footer {
-    background: linear-gradient(90deg, #c06209, #5e0283);    color: #fff;
-    color: #fff;
+   /*  background: linear-gradient(90deg, #c06209, #5e0283);    color: #fff;*/
+    background-color: #f4f4f4;
+    color: #333;
     padding: 20px 0;
     text-align: center;
 }
@@ -121,10 +184,39 @@ footer .socials li {
 }
 
 footer .socials li a {
-    color: #fff;
+    color: #0b1b2b;
     transition: color 0.3s ease;
 }
 
 footer .socials li a:hover {
     color: #f2961d; /* Twitter blue color, for example */
+}
+
+form {
+
+    color: #fff;
+
+
+}
+
+
+/* Footerx */
+
+.footerx {
+    background-color: #9b6012;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    min-height: 100%;
+    font-weight: 500;
+;
+}
+
+.footerx_elements{
+    list-style-type: none;
+    font-style: #fff;
+    margin: 10px 0 0;
+    padding: 0;
+    font-weight: 500;
+
 }
