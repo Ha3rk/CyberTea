@@ -9,11 +9,11 @@ urlpatterns = [
     path('incident_stats/', views.incident_stats, name='incident_stats'),
     
     # New path for summarizing articles
-    path('get-article-summary/', views.summarize_article, name='get_article_summary'),
-    
+    path('summarize/', views.summarize_article, name='summarize_article'),    
     # Authentication
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
+   #path('chat/', views.chat_view, name='chat'),
 
       
       ]

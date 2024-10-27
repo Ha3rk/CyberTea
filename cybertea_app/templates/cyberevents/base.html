@@ -17,11 +17,12 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            
-            <div class="logo"><img src="{% static 'images/zlogo.png' %}" alt="img">
-                <a href="{% url 'index' %}">CyberTea</a>
+
+        <div class="navbar">
+            <div class="logo"><img src="{% static '' %}" alt="">
+                <a href="{% url 'index' %}">CYBERTEA<span style="font-size: 15px; color: #c78c06;"> ■</span></a>
             </div>
+
             <nav>
                 <ul>
                     <li><a href="{% url 'login' %}">Login</a></li>
@@ -46,7 +47,7 @@
 
     <!-- Footer -->
     <section class="footerx">
-        <div class="container">
+        <div>
             <p></p>
             <ul class="footerx_elements">
                 <li><a href="#">Resource</a></li>
@@ -57,7 +58,7 @@
         </div>
     </section>
     <footer>
-        <div class="container">
+        <div>
             <p>&copy; 2024 Cybertea. All Rights Reserved.</p>
             <ul class="socials">
                 <li><a href="#">Facebook</a></li>

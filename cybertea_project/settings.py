@@ -116,6 +116,28 @@ USE_I18N = True
 
 USE_TZ = True
 
+# settings.py
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        # You can add your app logger here
+        'Cybertea': {  # Replace 'your_app_name' with the actual app name
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
