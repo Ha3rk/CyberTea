@@ -14,6 +14,8 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 # Set your OpenAI API key
 
+
+
 def get_krebs_news():
     krebs_news = []
     try:
@@ -130,7 +132,7 @@ def summarize_article(request):
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': 'Error fetching article: ' + str(e)}, status=500)
 
-def summarize_with_gpt(article_text):
+'''def summarize_with_gpt(article_text):
     try:
         logger.debug("Starting summarization with GPT for provided article text.")
         logger.debug(f"Article text: {article_text[:200]}...")  # Log the first 200 characters to avoid verbosity
@@ -151,3 +153,4 @@ def summarize_with_gpt(article_text):
     except Exception as e:
         logger.error(f"Error during summarization: {str(e)}")
         return f"Error during summarization: {str(e)}"
+        '''

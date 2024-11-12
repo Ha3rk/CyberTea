@@ -14,6 +14,8 @@
             <div class="news-item">
                 <h5><a href="{{ n.url }}" target="_blank">{{ n.title }}</a>
                     <button class="summary-button" data-url="{{ n.url }}">Go</button>
+                    <a class="community-button" href="{% url 'login' %}">Spill</a>
+
                 </h5>
                 <hr>
             </div>

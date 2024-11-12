@@ -152,8 +152,8 @@ div #summaryModalLabel {
 .summary-button {
     border-radius: 10px;
     padding: 3px 5px;
-    background-color: rgba(247, 247, 247, 0.1);
-    color: #6c3baa; /* Updated */
+    background-color: #f7f7f71a;
+    color: #6c3baa;
     transition: background-color 0.3s ease;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
@@ -162,6 +162,56 @@ div #summaryModalLabel {
 .summary-button:hover {
     transform: scale(1.05);
 }
+
+.community-button {
+    border-radius: 20px;
+    color: #fff;
+    padding: 5px 7px;
+    background-color: #6c3baa;
+    transition: background-color 0.3s ease;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.community-button a{
+
+
+}
+
+.community-button:hover {
+    transform: scale(1.05);
+}
+/* Forms */
+
+form input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border-color: rgb(108, 59, 170);
+    outline: none;
+    box-shadow: 0 0 5px rgba(108, 59, 170, 0.5);
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form button {
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 15px;
+    border-radius: 5px;
+    background-color: #6c3baa; /* Updated */
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
 
 /* Footer */
 footer {
