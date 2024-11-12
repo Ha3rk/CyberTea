@@ -35,11 +35,21 @@ cd project-directory
 >>>>Create and Activate a Virtual Environment
 
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# On macOS/Linux:
+
+source venv/bin/activate  
+# On Windows: 
+venv\Scripts\activate
 
 >>>>Install Dependencies
 
 pip install -r requirements.txt
+
+>>>>>>Configure Environment Variable
+
+pip install python-dotenv
+
 
 >>>>Run Migrations
 
