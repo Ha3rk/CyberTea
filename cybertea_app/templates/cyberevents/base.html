@@ -15,58 +15,66 @@
     <title>Cybertea</title>
 </head>
 <body>
-    <div class="wrapper">    <header>
-
-        <div class="navbar">
-            <div class="logo"><img src="{% static '' %}" alt="">
-                <a href="{% url 'index' %}">CYBERTEA<span style="font-size: 15px; color: #c78c06;"> ■</span></a>
+    <div>
+        <section class="announcement-section">
+            <div class="announcement-content">
+                Laa ilaha illa Allah wahdahu laa sharika lahu, lahu l mulk wa lahu lhamdu, yuhyi wa yumit, wa huwa ala kulli shayin qadir
             </div>
+        </section>
+    </div>
+    <div class="wrapper">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <a href="{% url 'index' %}">
+                        CYBERTEA
+                        <span style="font-size: 15px; color: #c78c06;">■</span>
+                    </a>
+                </div>
 
-            <nav>
-                <ul>
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'login' %}">Incident Stats</a></li>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'login' %}">Incident Stats</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
+        <!-- Main Content -->
+        <main>
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
 
+        <!-- Footer -->
+        <section class="footerx">
+            <div>
+                <p></p>
+                <ul class="footerx_elements">
+                    <li><a href="#">Resource</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-           {% block content %}
-           
-           {% endblock %}
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <section class="footerx">
-        <div>
-            <p></p>
-            <ul class="footerx_elements">
-                <li><a href="#">Resource</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Trending</a></li>
-            </ul>
-        </div>
-    </section>
-    <footer>
-        <div>
-            <p>&copy; 2024 Cybertea. All Rights Reserved.</p>
-            <ul class="socials">
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">X</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">LinkedIn</a></li>
-            </ul>
-        </div>
-    </footer>
+            </div>
+        </section>
+        
+        <footer>
+            <div>
+                <p>&copy; 2024 Cybertea. All Rights Reserved.</p>
+                <ul class="socials">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">X</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

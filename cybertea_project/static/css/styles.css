@@ -17,7 +17,7 @@ header .logo {
 
 header .logo a {
     position: absolute;
-    top: 10px;
+    top: 45px;
     left: 35px;
     color: #ffffff;
 }
@@ -29,7 +29,7 @@ header nav {
 header nav ul {
     list-style-type: none;
     position:relative;
-    margin: 0;
+    margin: 0.8rem;
     padding: 0;
     display: flex;
     font-weight: 600;
@@ -52,6 +52,33 @@ header nav ul li a {
 
 header nav ul li a:hover {
     background-color: #c78c06;
+}
+/*Announcement section*/
+.announcement-section {
+    width: 100%;
+    overflow: hidden; 
+    background-color: #c8db81; 
+    color: #0b0b0b;
+    padding: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.announcement-content {
+    display: inline-block;
+    white-space: nowrap; /* Prevent line break */
+    animation: scroll 30s linear infinite; /* Trigger scroll animation */
+}
+
+/* announcement animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%); /* Start from the right */
+    }
+    100% {
+        transform: translateX(-100%); /* Move to the left */
+    }
 }
 
 /* General Styles */

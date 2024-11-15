@@ -132,7 +132,7 @@ def summarize_article(request):
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': 'Error fetching article: ' + str(e)}, status=500)
 
-'''def summarize_with_gpt(article_text):
+def summarize_with_gpt(article_text):
     try:
         logger.debug("Starting summarization with GPT for provided article text.")
         logger.debug(f"Article text: {article_text[:200]}...")  # Log the first 200 characters to avoid verbosity
@@ -153,4 +153,4 @@ def summarize_article(request):
     except Exception as e:
         logger.error(f"Error during summarization: {str(e)}")
         return f"Error during summarization: {str(e)}"
-        '''
+    
