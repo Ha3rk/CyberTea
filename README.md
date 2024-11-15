@@ -43,7 +43,6 @@ source venv/bin/activate
 venv\Scripts\activate
 
 # Install Dependencies
-pyt
 pip install -r requirements.txt
 
 # Configure Environment Variable
