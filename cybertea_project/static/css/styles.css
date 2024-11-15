@@ -68,7 +68,7 @@ header nav ul li a:hover {
 .announcement-content {
     display: inline-block;
     white-space: nowrap; /* Prevent line break */
-    animation: scroll 30s linear infinite; /* Trigger scroll animation */
+    animation: scroll 15s linear infinite; /* Trigger scroll animation */
 }
 
 /* announcement animation */
