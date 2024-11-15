@@ -24,38 +24,38 @@ An AI-powered community platform providing:
 
 🚀 How to Run
 
->>>>Clone the Repository
+# Clone the Repository
 
 git clone <repo>
 
->>>>Navigate to the Project Directory
+# Navigate to the Project Directory
 
 cd project-directory
 
->>>>Create and Activate a Virtual Environment
+# Create and Activate a Virtual Environment
 
 python3 -m venv venv
 
-# On macOS/Linux:
+>>>>>> On macOS/Linux:
 
 source venv/bin/activate  
-# On Windows: 
+>>>>>> On Windows: 
 venv\Scripts\activate
 
->>>>Install Dependencies
-
+# Install Dependencies
+pyt
 pip install -r requirements.txt
 
->>>>>>Configure Environment Variable
+# Configure Environment Variable
 
 pip install python-dotenv
 
 
->>>>Run Migrations
+# Run Migrations
 
 python manage.py migrate
 
->>>>Start the Development Server
+# Start the Development Server
 
     python manage.py runserver
 
