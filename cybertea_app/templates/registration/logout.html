@@ -1,0 +1,29 @@
+{% extends 'cyberevents/base.html' %}
+{% block title %}Logout {% endblock %}
+
+{% block content %}
+<main>
+    <body>
+        <h2>Logout</h2>
+        
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <p>Are you sure you want to log out?</p>
+        
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        
+        <p>Changed your mind? <a href="{% url 'home' %}">Go back to the homepage</a></p>
+    </body>
+    
+    <br>
+</main>
+{% endblock %}

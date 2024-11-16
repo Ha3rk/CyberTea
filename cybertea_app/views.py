@@ -9,6 +9,8 @@ import logging
 from django.contrib import messages
 from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout
+
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -113,7 +115,16 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-openai.api_key = os.environ.get("OPENAI_API_KEY") 
+
+def logout_view(request):
+    logout(request)
+    return redirect('index') 
+
+
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("API Key not found. Make sure to set the OPENAI_API_KEY environment variable.")
+
 
 # Function to fetch article content and summarize it using GPT
 def summarize_article(request):
@@ -140,10 +151,10 @@ def summarize_with_gpt(article_text):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "narrate the article by highlighting all its key points in a list of five concise sentences."},
+                {"role": "system", "content": "highlight all key points in an ordered list of 3 short concise sentences. If there is professional level technical term, explain after the highlights in glossary format"},
                 {"role": "user", "content": article_text}
             ],
-            max_tokens=10000
+            max_tokens=3000
         )
 
         summary = response['choices'][0]['message']['content'].strip()
@@ -153,4 +164,3 @@ def summarize_with_gpt(article_text):
     except Exception as e:
         logger.error(f"Error during summarization: {str(e)}")
         return f"Error during summarization: {str(e)}"
-    
