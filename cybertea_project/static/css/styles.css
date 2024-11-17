@@ -215,7 +215,7 @@ div #summaryModalLabel {
     border-radius: 20px;
     color: #fff;
     padding: 5px 7px;
-    background-color: #6c3baa;
+    background-color: #9070b9;
     transition: background-color 0.3s ease;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
@@ -224,6 +224,8 @@ div #summaryModalLabel {
 
 .community-button:hover {
     transform: scale(1.05);
+    background-color: #674e85;
+
 }
 /* Forms */
 
