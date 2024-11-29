@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cybertea_app',
     'cybertea_users',
-    'crispy_forms',
+    'tinymce',
+    'hitcount',
+    'taggit',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

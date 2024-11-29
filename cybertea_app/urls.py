@@ -6,6 +6,9 @@ urlpatterns = [
     path('base/', views.base, name='base'),
     path('categories/', views.category_list, name='category_list'),
     path('about/', views.about, name='about'),
+    path('about/', views.contact, name='contact'),
+    path('about/', views.resource, name='resource'),
+    path('about/', views.trending, name='trending'),
     path('incident_stats/', views.incident_stats, name='incident_stats'),
     
     # New path for summarizing articles

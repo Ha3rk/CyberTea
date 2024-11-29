@@ -78,6 +78,15 @@ def category_list(request):
 def about(request):
     return render(request, 'cyberevents/about.html', {'about': about})
 
+def contact(request):
+    return render(request, 'cyberevents/about.html', {'about': about})
+
+def resource(request):
+    return render(request, 'cyberevents/about.html', {'about': about})
+
+def trending(request):
+    return render(request, 'cyberevents/about.html', {'about': about})
+
 def incident_stats(request):
     return render(request, 'cyberevents/incident_stats.html', {'incident_stats': incident_stats})
 
