@@ -32,21 +32,22 @@ git clone <repo>
 
 cd project-directory
 
-# Create and Activate a Virtual Environment
+# Create Virtual Environment
 
-python3 -m venv projectenv
+python -m venv projectenv
 
-# On macOS/Linux:
+# Activate On macOS/Linux:
 
 source projectenv/bin/activate  
-# On Windows: 
+
+# Activate On Windows: 
 
 projectenv\Scripts\activate
 
 # Install Dependencies
 pip install -r requirements.txt 
 
-(remove d-bus in requirement.txt for windows and use pip instead of pip3 as in linux/mac oS)
+(remove d-bus & tzdata in requirement.txt for windows and use pip instead of pip3 as in linux/mac oS)
 
 # Configure Environment Variable
 
