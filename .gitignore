@@ -14,7 +14,7 @@ media/
 .env
 venv/
 env/
-myprojectenv/
+cyberteaenv/
 
 # VSCode
 .vscode/

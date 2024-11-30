@@ -34,16 +34,19 @@ cd project-directory
 
 # Create and Activate a Virtual Environment
 
-python3 -m venv venv
+python3 -m venv projectenv
 
->>>>>> On macOS/Linux:
+# On macOS/Linux:
 
-source venv/bin/activate  
->>>>>> On Windows: 
-venv\Scripts\activate
+source projectenv/bin/activate  
+# On Windows: 
+
+projectenv\Scripts\activate
 
 # Install Dependencies
-pip install -r requirements.txt
+pip install -r requirements.txt 
+
+(remove d-bus in requirement.txt for windows and use pip instead of pip3 as in linux/mac oS)
 
 # Configure Environment Variable
 
