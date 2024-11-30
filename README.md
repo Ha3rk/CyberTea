@@ -52,10 +52,13 @@ pip install -r requirements.txt
 # Configure Environment Variable
 
 pip install python-dotenv
+create .env file in root directory (where you have manage.py )
+put your secret key there
+import and load the secret key in settings.py
 
 
-# Run Migrations
-
+# Make and Run Migrations
+python manage.py makemigrations cybertea_app
 python manage.py migrate
 
 # Start the Development Server
