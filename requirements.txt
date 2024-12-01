@@ -63,7 +63,7 @@ multidict==6.1.0
 nbclient==0.10.1
 nbconvert==7.16.4
 nbformat==5.10.4
-openai==1.55.3
+openai==0.28 #Please stick to this version alone openai version 0.28
 packaging==24.2
 pandocfilters==1.5.1
 parso==0.8.4

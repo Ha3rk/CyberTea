@@ -45,6 +45,8 @@ source projectenv/bin/activate
 projectenv\Scripts\activate
 
 # Install Dependencies
+##Please Note Openai==0.28 alone works for the program, so do not upgrade
+
 pip install -r requirements.txt 
 
 (remove d-bus & tzdata in requirement.txt for windows and use pip instead of pip3 as in linux/mac oS)
