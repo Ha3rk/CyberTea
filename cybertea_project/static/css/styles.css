@@ -17,7 +17,7 @@ header .logo {
 
 header .logo a {
     position: absolute;
-    top: 45px;
+    top: 50px;
     left: 35px;
     color: #ffffff;
 }
@@ -259,6 +259,21 @@ form button {
 }
 
 
+.comment-submit {
+    width: 8%;
+    padding: 3px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+
+}
+
+.hide {
+    display: none;
+}
+
 /* Footer */
 footer {
     background-color: #333;
@@ -328,3 +343,115 @@ footer .socials li a:hover {
 .footerx .footerx_elements li a:hover {
     color: #f2961d;
 }
+
+
+
+/* comment section */
+.comment-area{
+    margin-bottom:50px;
+}
+
+.comment-area textarea{
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-block: 10px;
+}
+
+.comment-area input{
+    float: right;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.comment-area input:hover{
+    border: solid 1px #000000;
+}
+
+
+/** media screen   Come back to fix**/
+
+
+/* For the smartphones */
+@media screen and (max-width: 460px) {
+    .container{
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .subforum-row{
+        display: grid;
+        grid-template-columns: 25% 75%;
+        grid-template-rows: 65% 35%;
+    }
+
+    .subforum-devider{
+        display: block;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(190, 190, 190, 0), rgba(255, 255, 255, 0.75), rgba(190, 190, 190, 0));
+    }
+}
+
+/* For the tablets */
+@media screen and (min-width: 460px) and (max-width: 1024px) {
+    .container{
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .subforum-row{
+        display: grid;
+        grid-template-columns: 10% 60% 10% 20%;
+    }
+
+    .subforum-icon i{
+        font-size: 35px;
+    }
+
+    html{
+        font-size: 14px;
+    }
+
+    h1{
+        font-size: 16px;
+    }
+}
+
+/* Navbar for the smartphones */
+@media screen and (max-width: 460px){
+    .navigation{
+        max-height: auto;
+    }
+
+    .close-icon i{
+        font-size:30px;
+    }
+
+    .nav-item a{
+        float:left;
+        display:inline;
+        margin-inline: 3px;
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .bar-icon{
+        font-size: 30px;
+    }
+
+    .brand{
+        font-size:20px;
+    }
+}
+
+/* Search box for smartphones */
+@media screen and (max-width: 460px){
+    .search-box input, .search-box button, .search-box select{
+        min-width: 300px;
+        margin-top: 5px;
+    }    
+}
+
+

@@ -18,6 +18,7 @@ load_dotenv()
 
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
+OPEN_API_KEY = os.getenv('OPEN_API_KEY', 'default-value')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
