@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from .models import User, Author, Category, Post, Comment, Reply
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .incident_display import fetch_recent_cves, fetch_cve_details
 from bs4 import BeautifulSoup
 from .models import Category
 from django.http import JsonResponse
@@ -151,7 +152,7 @@ def create_post(request):
             new_post.user = author
             new_post.save()
             form.save_m2m()
-            return redirect("home")
+            return redirect("forums")
     context.update({
         "form": form,
         "title": "OZONE: Create New Post"
@@ -229,6 +230,24 @@ def logout_view(request):
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("API Key not found. Make sure to set the OPENAI_API_KEY environment variable.")
+
+
+
+#Incident Display 
+
+def recent_cves(request):
+    """
+    View to display recent CVEs.
+    """
+    recent_cves = fetch_recent_cves(limit=10)  # Fetch 15 recent CVEs
+    return render(request, 'cyberevents/recent_cves.html', {'cves': recent_cves})
+
+def cve_details(request, cve_id):
+    """
+    View to display details of a specific CVE.
+    """
+    cve_data = fetch_cve_details(cve_id)
+    return render(request, 'cyberevents/cve_details.html', {'cve': cve_data, 'cve_id': cve_id})
 
 
 # Function to fetch article content and summarize it using GPT

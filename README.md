@@ -49,8 +49,6 @@ projectenv\Scripts\activate
 
 pip install -r requirements.txt 
 
-(remove d-bus & tzdata in requirement.txt for windows and use pip instead of pip3 as in linux/mac oS)
-
 # Configure Environment Variable
 
 pip install python-dotenv

@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}Recent CVEs{% endblock %}
+
+{% block content %}
+<main>
+    <section>
+        <ul>
+            {% for cve in cves %}
+                {% if cve.id %}
+                    <li>
+                        <strong>{{ cve.id }}</strong>: {{ cve.summary }}<br>
+                        <a href="{% url 'cve_details' cve.id %}">View Details</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <strong>Unknown ID</strong>: {{ cve.summary }}
+                    </li>
+                {% endif %}
+            {% empty %}
+                <li>No CVEs available at this time.</li>
+            {% endfor %}
+        </ul>
+        
+    </section>
+</main>
+{% endblock %}

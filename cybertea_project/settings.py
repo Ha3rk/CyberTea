@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'hitcount',
     'taggit',
     'crispy_forms',
+    'crispy_bootstrap5',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -153,7 +154,7 @@ LOGGING = {
 
 STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS=[os.path.join(BASE_DIR, "cybertea_project/static")]
+STATICFILES_DIRS=[os.path.join(BASE_DIR, "cybertea_app/static")]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 
 # Default primary key field type

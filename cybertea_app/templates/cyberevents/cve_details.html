@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+main>
+    <section>
+        <h1>Details for {{ cve_id }}</h1>
+    {% if cve %}
+        <p><strong>ID:</strong> {{ cve.id }}</p>
+        <p><strong>Summary:</strong> {{ cve.summary }}</p>
+        <p><strong>Published:</strong> {{ cve.Published }}</p>
+        <p><strong>Modified:</strong> {{ cve.Modified }}</p>
+        {% if cve.cvss %}
+            <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
+        {% endif %}
+    {% else %}
+        <p>No details available for this CVE.</p>
+    {% endif %}
+    <a href="{% url 'recent_cves' %}">Back to Recent CVEs</a>
+    </section>
+</main>
+{% endblock %}

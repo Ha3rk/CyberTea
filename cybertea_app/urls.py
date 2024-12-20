@@ -14,7 +14,12 @@ urlpatterns = [
     path("create_post/", views.create_post, name="create_post"),
     path("latest_posts/", views.latest_posts, name="latest_posts"),
     path("search/", views.search_result, name="search_result"),
-    path('incident_stats/', views.incident_stats, name='incident_stats'),
+    #path('incident_stats/', views.incident_stats, name='incident_stats'),
+
+
+    # Incident stats display
+    path('recent-cves/', views.recent_cves, name='recent_cves'),
+    path('cve/<str:cve_id>/', views.cve_details, name='cve_details'),
     
     
     # New path for summarizing articles

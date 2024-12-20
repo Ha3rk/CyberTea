@@ -1,8 +1,10 @@
 version: "3.9"
-
 services:
   django:
-    image: cyberteaweb:latest
-    build: .
+    image: ha3rk/cyberteaweb
+    container_name: cyweb
     ports:
       - "8000:8000"
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
