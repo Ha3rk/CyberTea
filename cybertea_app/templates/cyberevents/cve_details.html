@@ -1,23 +1,40 @@
 {% extends './base.html' %}
 
-{% block title %}About Us{% endblock %}
+{% block title %}CVE Details{% endblock %}
 
 {% block content %}
-main>
+<main>
     <section>
-        <h1>Details for {{ cve_id }}</h1>
-    {% if cve %}
-        <p><strong>ID:</strong> {{ cve.id }}</p>
-        <p><strong>Summary:</strong> {{ cve.summary }}</p>
-        <p><strong>Published:</strong> {{ cve.Published }}</p>
-        <p><strong>Modified:</strong> {{ cve.Modified }}</p>
-        {% if cve.cvss %}
-            <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
+        <h2>Details for {{ cve_id }}</h2>
+        {% if cve %}
+            <p><strong>ID:</strong> {{ cve.id }}</p>
+            <p><strong>Summary:</strong> {{ cve.summary }}</p>
+            <p><strong>Published:</strong> {{ cve.Published }}</p>
+            <p><strong>Modified:</strong> {{ cve.Modified }}</p>
+            {% if cve.cvss %}
+                <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
+            {% endif %}
+
+        
+            {% if cve.nvd_details %}
+                <h2>NVD Details</h2>
+                <ul>
+                    {% for item in cve.nvd_details %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No additional data available from NVD.</p>
+            {% endif %}
+            
+            <h2>AI-Generated Analysis</h2>
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <p>{{ ai_generated_summary }}</p>
+            </div>
+        {% else %}
+            <p>No details available for this CVE.</p>
         {% endif %}
-    {% else %}
-        <p>No details available for this CVE.</p>
-    {% endif %}
-    <a href="{% url 'recent_cves' %}">Back to Recent CVEs</a>
+        <a href="{% url 'recent_cves' %}">Back to Recent CVEs</a>
     </section>
 </main>
 {% endblock %}

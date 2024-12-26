@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from .models import User, Author, Category, Post, Comment, Reply
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .incident_display import fetch_recent_cves, fetch_cve_details
 from bs4 import BeautifulSoup
 from .models import Category
 from django.http import JsonResponse
@@ -13,14 +12,12 @@ from django.contrib import messages
 from .forms import LoginForm, RegistrationForm, PostForm
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
-from .utils import update_views
+from .utils import fetch_cve_details, fetch_recent_cves, update_views
+
 
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-# Set your OpenAI API key
-
-
 
 def get_krebs_news():
     krebs_news = []
@@ -229,26 +226,56 @@ def logout_view(request):
 
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
-    raise ValueError("API Key not found. Make sure to set the OPENAI_API_KEY environment variable.")
+    raise ValueError("API Key not found. Set the OPENAI_API_KEY environment variable.")
+openai.api_key = api_key
 
+'''cve_api_key= os.environ.get("NVD_API_KEY")
+if not cve_api_key:
+    raise ValueError("API Key not found. Make sure to set the CVE API FROM NVD, CIRCL IS auto.")
 
-
+'''
 #Incident Display 
 
 def recent_cves(request):
-    """
-    View to display recent CVEs.
-    """
-    recent_cves = fetch_recent_cves(limit=10)  # Fetch 15 recent CVEs
+
+    recent_cves = fetch_recent_cves(limit=10) 
     return render(request, 'cyberevents/recent_cves.html', {'cves': recent_cves})
 
 def cve_details(request, cve_id):
-    """
-    View to display details of a specific CVE.
-    """
-    cve_data = fetch_cve_details(cve_id)
-    return render(request, 'cyberevents/cve_details.html', {'cve': cve_data, 'cve_id': cve_id})
+    # Fetch CVE details from CIRCL
+    cve = fetch_cve_details(cve_id)
+    
+    if not cve:
+        return render(request, "cyberevents/cve_details.html", {"cve_id": cve_id, "cve": None})
 
+    # Generate a summary using OpenAI
+    prompt = f"""
+    Create a detailed summary and visualization plan for the following CVE:
+    
+    ID: {cve['id']}
+    Summary: {cve.get('summary', 'No summary available')}
+    CVSS Score: {cve.get('cvss', 'N/A')}
+    Published: {cve.get('Published', 'N/A')}
+    Modified: {cve.get('Modified', 'N/A')}
+    
+    Provide an explanation of the impact, remediation steps, and create a table of details.
+    """
+    
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a cybersecurity expert."},
+            {"role": "user", "content": prompt},
+        ],
+    )
+    
+    ai_generated_summary = response['choices'][0]['message']['content']
+
+    return render(request, "cyberevents/cve_details.html", {
+        "cve_id": cve_id,
+        "cve": cve,
+        "ai_generated_summary": ai_generated_summary,
+    })
 
 # Function to fetch article content and summarize it using GPT
 def summarize_article(request):

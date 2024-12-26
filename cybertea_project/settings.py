@@ -19,6 +19,8 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
 OPEN_API_KEY = os.getenv('OPEN_API_KEY', 'default-value')
+NVD_API_KEY = os.getenv('NVD_API_KEY', "default-value")
+
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'taggit',
     'crispy_forms',
     'crispy_bootstrap5',
+    'corsheaders',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -61,6 +64,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000", 
+    "http://127.0.0.1:8000",
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS',
 ]
 
 ROOT_URLCONF = 'cybertea_project.urls'
@@ -80,6 +97,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'cybertea_project.wsgi.application'
 
