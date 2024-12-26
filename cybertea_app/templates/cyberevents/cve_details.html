@@ -5,17 +5,14 @@
 {% block content %}
 <main>
     <section>
-        <h2>Details for {{ cve_id }}</h2>
+        <h2>Incident Details</h2>
         {% if cve %}
             <p><strong>ID:</strong> {{ cve.id }}</p>
             <p><strong>Summary:</strong> {{ cve.summary }}</p>
+            <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
             <p><strong>Published:</strong> {{ cve.Published }}</p>
             <p><strong>Modified:</strong> {{ cve.Modified }}</p>
-            {% if cve.cvss %}
-                <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
-            {% endif %}
 
-        
             {% if cve.nvd_details %}
                 <h2>NVD Details</h2>
                 <ul>
@@ -26,10 +23,10 @@
             {% else %}
                 <p>No additional data available from NVD.</p>
             {% endif %}
-            
-            <h2>AI-Generated Analysis</h2>
-            <div style="border: 1px solid #ccc; padding: 10px;">
-                <p>{{ ai_generated_summary }}</p>
+
+            <h2>Cybertea Stats</h2>
+            <div>
+                <pre>{{ ai_generated_summary }}</pre>
             </div>
         {% else %}
             <p>No details available for this CVE.</p>

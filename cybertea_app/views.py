@@ -242,40 +242,65 @@ def recent_cves(request):
     return render(request, 'cyberevents/recent_cves.html', {'cves': recent_cves})
 
 def cve_details(request, cve_id):
-    # Fetch CVE details from CIRCL
-    cve = fetch_cve_details(cve_id)
-    
-    if not cve:
+
+    cve_data = {}
+    try:
+        # Fetch CVE details from CIRCL API
+        circl_response = fetch_cve_details(cve_id)
+        if circl_response:
+            cve_data.update({
+                "id": circl_response.get("cveId"),
+                "summary": circl_response.get("cna.title", "No summary available"),
+                "cvss": circl_response.get("cvss"),
+                "Published": circl_response.get("Published"),
+                "Modified": circl_response.get("Modified"),
+            })
+        
+        # Fetch CVE details from NVD API
+        nvd_url = f"https://services.nvd.nist.gov/rest/json/cve/1.0/{cve_id}"
+        headers = {"apiKey": os.environ.get("NVD_API_KEY", "")}  # Use environment variable for API key
+        nvd_response = requests.get(nvd_url, headers=headers)
+        if nvd_response.status_code == 200:
+            nvd_data = nvd_response.json()
+            cve_data["nvd_details"] = nvd_data.get("result", {}).get("CVE_Items", [])
+        else:
+            logger.warning(f"NVD API returned status {nvd_response.status_code} for CVE: {cve_id}")
+
+    except Exception as e:
+        logger.error(f"Error fetching CVE data: {str(e)}")
         return render(request, "cyberevents/cve_details.html", {"cve_id": cve_id, "cve": None})
 
     # Generate a summary using OpenAI
-    prompt = f"""
-    Create a detailed summary and visualization plan for the following CVE:
-    
-    ID: {cve['id']}
-    Summary: {cve.get('summary', 'No summary available')}
-    CVSS Score: {cve.get('cvss', 'N/A')}
-    Published: {cve.get('Published', 'N/A')}
-    Modified: {cve.get('Modified', 'N/A')}
-    
-    Provide an explanation of the impact, remediation steps, and create a table of details.
-    """
-    
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "You are a cybersecurity expert."},
-            {"role": "user", "content": prompt},
-        ],
-    )
-    
-    ai_generated_summary = response['choices'][0]['message']['content']
+    try:
+        prompt = f"""
+        Create a detailed visualization for the following CVE:
+        
+        ID: {cve_data.get('cveId')}
+        Summary: {cve_data.get('summary', 'No summary available')}
+        CVSS Score: {cve_data.get('cvss', 'N/A')}
+        Published: {cve_data.get('datePublished', 'N/A')}
+        Modified: {cve_data.get('Modified', 'N/A')}
+        
+        Provide an statistics of the impact, and while avoiding explanation create a table of details.
+        """
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a cybersecurity expert."},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        ai_generated_summary = response['choices'][0]['message']['content']
+    except Exception as e:
+        logger.error(f"Error generating summary with OpenAI: {str(e)}")
+        ai_generated_summary = "Unable to generate a summary at this time."
 
     return render(request, "cyberevents/cve_details.html", {
         "cve_id": cve_id,
-        "cve": cve,
+        "cve": cve_data,
         "ai_generated_summary": ai_generated_summary,
     })
+
 
 # Function to fetch article content and summarize it using GPT
 def summarize_article(request):
