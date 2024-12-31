@@ -7,12 +7,14 @@
 <main>
     <section>
         <ul>
-            {% for cve in cves %}
-                {% if cve.id %}
-                    <li>
-                        <strong>{{ cve.id }}</strong>: {{ cve.summary }}<br>
-                        <a href="{% url 'cve_details' cve.id %}">View Details</a>
+            {% for cv in cves %}
+                {% if cv.vulnerabilities %}
+                    <li class="cve_list">
+                        <strong><a href="{% url 'cve_details' cv.vulnerabilities.0.cve %}">
+                            {{ cv.vulnerabilities.0.cve }}</a></strong><br>
+                        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cv.vulnerabilities.0.cve }}" class="mitre_link">MITRE  Details</a>
                     </li>
+                    <hr>
                 {% else %}
                     <li>
                         <strong>Unknown ID</strong>: {{ cve.summary }}

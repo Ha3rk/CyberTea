@@ -1,23 +1,24 @@
+import requests
 from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
-import requests
 
-def fetch_recent_cves(limit=10):
+
+def fetch_recent_cves(limit=15):
     url = "https://cve.circl.lu/api/last"
     try:
         response = requests.get(url)
         response.raise_for_status()
         cve_list = response.json()
         # Filter out CVEs missing the 'id' field
-        return [cve for cve in cve_list if 'id' in cve][:limit]
+        return [cve for cve in cve_list if 'vulnerabilities' in cve][:limit]
     except requests.RequestException as e:
         print(f"API request failed: {e}")
         return []
 
 
-def fetch_cve_details(cve_id):
+def fetch_cve_details(cveid):
 
-    url = f"https://cve.circl.lu/api/cve/{cve_id}"
+    url = f"https://cve.circl.lu/api/cve/{cveid}"
     try:
         response = requests.get(url)
         response.raise_for_status()

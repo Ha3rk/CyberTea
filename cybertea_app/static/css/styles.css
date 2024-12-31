@@ -454,4 +454,12 @@ footer .socials li a:hover {
     }    
 }
 
+.cve_list{
+    list-style-type: none;
 
+
+}
+.mitre_link{
+color: #6c3baa
+
+}

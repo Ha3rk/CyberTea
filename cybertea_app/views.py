@@ -238,8 +238,8 @@ if not cve_api_key:
 
 def recent_cves(request):
 
-    recent_cves = fetch_recent_cves(limit=10) 
-    return render(request, 'cyberevents/recent_cves.html', {'cves': recent_cves})
+    recent_cves = fetch_recent_cves(limit=15) 
+    return render(request, 'cyberevents/recent_cves.html', {"cves": recent_cves})
 
 def cve_details(request, cve_id):
 
