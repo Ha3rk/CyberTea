@@ -1,19 +1,21 @@
+import requests
+import os
+import openai
+import logging
+import re
 from django.shortcuts import render, redirect,  get_object_or_404
 from .models import User, Author, Category, Post, Comment, Reply
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bs4 import BeautifulSoup
 from .models import Category
 from django.http import JsonResponse, HttpResponseServerError
-import requests
-import os
-import openai
-import logging
 from django.contrib import messages
 from .forms import LoginForm, RegistrationForm, PostForm
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
 from .utils import fetch_cve_data, fetch_recent_cves, update_views
 from django.db.models import Q
+from django.utils.html import strip_tags
 
 
 
@@ -181,6 +183,10 @@ def forum_search(request):
 
     # Get the most recent post
     last_post = Post.objects.order_by('-date').first()
+
+    for post in posts:
+        post.content = strip_tags(post.content)
+        post.content = re.sub(r"&nbsp;", " ", post.content)
 
     return render(request, 'cyberevents/forums.html', {
         'posts': posts,
