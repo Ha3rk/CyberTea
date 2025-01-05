@@ -337,3 +337,4 @@ Traceback (most recent call last):
     post.content = re.sub(r"&nbsp;", " ", post.content)
                    ^^
 NameError: name 're' is not defined
+WARNING 2025-01-05 19:31:38,998 log Not Found: /favicon.ico
