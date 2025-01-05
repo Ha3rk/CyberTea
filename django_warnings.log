@@ -345,3 +345,33 @@ WARNING 2025-01-05 19:45:41,190 log Not Found: /favicon.ico
 WARNING 2025-01-05 19:45:51,083 log Not Found: /favicon.ico
 WARNING 2025-01-05 20:03:40,135 log Not Found: /favicon.ico
 WARNING 2025-01-05 20:07:44,034 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:16:04,632 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:24:55,759 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:27:40,619 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:28:31,493 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:30:56,695 log Not Found: /favicon.ico
+ERROR 2025-01-05 20:33:41,407 log Internal Server Error: /create_post/
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cybertea_project/cybertea_app/views.py", line 143, in create_post
+    author = Author.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+cybertea_app.models.Author.DoesNotExist: Author matching query does not exist.
+WARNING 2025-01-05 20:34:25,359 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:36:34,431 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:36:39,728 log Forbidden (CSRF token from POST incorrect.): /create_post/
+WARNING 2025-01-05 20:59:10,261 log Not Found: /favicon.ico
+WARNING 2025-01-05 20:59:50,420 log Not Found: /favicon.ico
+WARNING 2025-01-05 21:01:30,623 log Not Found: /favicon.ico
+WARNING 2025-01-05 21:04:20,138 log Not Found: /favicon.ico
+WARNING 2025-01-05 21:05:45,177 log Not Found: /favicon.ico

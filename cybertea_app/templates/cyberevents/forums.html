@@ -77,7 +77,8 @@
 
 <!-- Forum Info -->
 <div class="forum-info">
-    <div class="chart">
+    <button class="button"><a href="{% url 'create_post' %}">Create post</a></button>
+        <div class="chart">
         MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
     </div>
     <span><u>{{ num_posts }}</u> Posts in <u>{{ num_categories }}</u> Categories by <u>{{ num_users }}</u> Members.</span><br>

@@ -322,7 +322,7 @@ def summarize_with_gpt(article_text):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "highlight all key points in an ordered list of 3 short logically continuous and concise 15 words sentences, Add after the first and second sentences'_______________________________________________________________________________________________________________________________________'. If there is professional level technical term, explain after the highlights in bracketed glossary format, ater the word '_________________________________________________________________________Glossary________________________________________________________________:'"},
+                {"role": "system", "content": "manage all key points into exactly three: short, mildly-journalistic, and concise 15 words sentences. Add after the first and second sentences'▐ .'. If there is professional level technical term, explain after the keypoints in bracketed glossary format, ater the word '_________________________________________________________________________Glossary________________________________________________________________:'"},
                 {"role": "user", "content": article_text}
             ],
             max_tokens=3000
