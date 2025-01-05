@@ -4,29 +4,27 @@ from hitcount.views import HitCountMixin
 
 
 def fetch_recent_cves(limit=15):
-    url = "https://cve.circl.lu/api/last"
+    url = "https://cve.circl.lu/api/vulnerability/last"
     try:
         response = requests.get(url)
         response.raise_for_status()
         cve_list = response.json()
         # Filter out CVEs missing the 'id' field
-        return [cve for cve in cve_list if 'vulnerabilities' in cve][:limit]
+        return [cve for cve in cve_list if 'aliases' in cve][:limit]
     except requests.RequestException as e:
         print(f"API request failed: {e}")
         return []
 
 
-def fetch_cve_details(cveid):
-
-    url = f"https://cve.circl.lu/api/cve/{cveid}"
+def fetch_cve_data(cve_id):
+    url = f"https://cve.circl.lu/api/cve/{cve_id}"
     try:
         response = requests.get(url)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
-        print(f"Failed to fetch CVE details: {e}")
-        return None
-
+        print(f"API request failed for CVE {cve_id}: {e}")
+        return {"id": cve_id, "error": "CVE data not found"}
 
 def update_views(request, object):
     context = {}

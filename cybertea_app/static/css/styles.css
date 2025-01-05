@@ -463,3 +463,21 @@ footer .socials li a:hover {
 color: #6c3baa
 
 }
+
+/**resource page**/
+
+.resource-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.resource-list {
+    flex: 1;
+    min-width: 45%;
+    list-style-type: none;
+    padding: 0;
+}
+.resource-list li {
+    margin-bottom: 20px;
+}

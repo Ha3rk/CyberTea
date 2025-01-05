@@ -3,7 +3,7 @@ from .models import User, Author, Category, Post, Comment, Reply
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bs4 import BeautifulSoup
 from .models import Category
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError
 import requests
 import os
 import openai
@@ -12,7 +12,8 @@ from django.contrib import messages
 from .forms import LoginForm, RegistrationForm, PostForm
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
-from .utils import fetch_cve_details, fetch_recent_cves, update_views
+from .utils import fetch_cve_data, fetch_recent_cves, update_views
+from django.db.models import Q
 
 
 
@@ -62,15 +63,8 @@ def index(request):
     })
 
 def base(request):
-    # Fetch news from all cybersecurity sources
-    krebs_news = get_krebs_news()
-    hackernews_news = get_hackernews_news()
    
-    # Render the data in the template
-    return render(request, 'cyberevents/base.html', {
-        'krebs_news': krebs_news,
-        'hackernews_news': hackernews_news,
-    })
+    return render(request, 'cyberevents/base.html', {'base': base })
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if request.user.is_authenticated:
@@ -165,9 +159,36 @@ def latest_posts(request):
     return render(request, "cyberevents/latest-posts.html", context)
 
 
-def search_result(request):
 
-    return render(request, "cyberevents/search.html")
+def forum_search(request):
+    query = request.GET.get('query', '')
+    
+    if query:
+        # Filter posts by title, content, and categories (using Q for OR logic)
+        posts = Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(categories__title__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+    else:
+        # Show all posts if no search query is provided
+        posts = Post.objects.all()
+
+    num_posts = Post.objects.count()
+    num_categories = Category.objects.count()
+    num_users = User.objects.count()
+
+    # Get the most recent post
+    last_post = Post.objects.order_by('-date').first()
+
+    return render(request, 'cyberevents/forums.html', {
+        'posts': posts,
+        'num_posts': num_posts,
+        'num_categories': num_categories,
+        'num_users': num_users,
+        'last_post': last_post,
+    })
 
 def about(request):
     return render(request, 'cyberevents/about.html', {'about': about})
@@ -176,7 +197,7 @@ def contact(request):
     return render(request, 'cyberevents/about.html', {'about': about})
 
 def resource(request):
-    return render(request, 'cyberevents/about.html', {'about': about})
+    return render(request, 'resources/resource.html', {'resource': resource})
 
 def trending(request):
     return render(request, 'cyberevents/about.html', {'about': about})
@@ -242,46 +263,14 @@ def recent_cves(request):
     return render(request, 'cyberevents/recent_cves.html', {"cves": recent_cves})
 
 def cve_details(request, cve_id):
-
-    cve_data = {}
     try:
-        # Fetch CVE details from CIRCL API
-        circl_response = fetch_cve_details(cve_id)
-        if circl_response:
-            cve_data.update({
-                "id": circl_response.get("cveId"),
-                "summary": circl_response.get("cna.title", "No summary available"),
-                "cvss": circl_response.get("cvss"),
-                "Published": circl_response.get("Published"),
-                "Modified": circl_response.get("Modified"),
-            })
-        
-        # Fetch CVE details from NVD API
-        nvd_url = f"https://services.nvd.nist.gov/rest/json/cve/1.0/{cve_id}"
-        headers = {"apiKey": os.environ.get("NVD_API_KEY", "")}  # Use environment variable for API key
-        nvd_response = requests.get(nvd_url, headers=headers)
-        if nvd_response.status_code == 200:
-            nvd_data = nvd_response.json()
-            cve_data["nvd_details"] = nvd_data.get("result", {}).get("CVE_Items", [])
-        else:
-            logger.warning(f"NVD API returned status {nvd_response.status_code} for CVE: {cve_id}")
+       
+        cve_data = fetch_cve_data(cve_id)
 
-    except Exception as e:
-        logger.error(f"Error fetching CVE data: {str(e)}")
-        return render(request, "cyberevents/cve_details.html", {"cve_id": cve_id, "cve": None})
-
-    # Generate a summary using OpenAI
-    try:
+        # Generate a summary using OpenAI
         prompt = f"""
-        Create a detailed visualization for the following CVE:
-        
-        ID: {cve_data.get('cveId')}
-        Summary: {cve_data.get('summary', 'No summary available')}
-        CVSS Score: {cve_data.get('cvss', 'N/A')}
-        Published: {cve_data.get('datePublished', 'N/A')}
-        Modified: {cve_data.get('Modified', 'N/A')}
-        
-        Provide an statistics of the impact, and while avoiding explanation create a table of details.
+        Create a table of statistics for, and analyze the CVE: {cve_data.get('id')}. 
+        If no CVE data is available, output 'NO DATA'.
         """
         response = openai.ChatCompletion.create(
             model="gpt-4",
@@ -291,16 +280,16 @@ def cve_details(request, cve_id):
             ],
         )
         ai_generated_summary = response['choices'][0]['message']['content']
+
     except Exception as e:
         logger.error(f"Error generating summary with OpenAI: {str(e)}")
-        ai_generated_summary = "Unable to generate a summary at this time."
+        return HttpResponseServerError()
 
+    # Render the CVE details page
     return render(request, "cyberevents/cve_details.html", {
-        "cve_id": cve_id,
-        "cve": cve_data,
+        "cve_data": cve_data,
         "ai_generated_summary": ai_generated_summary,
     })
-
 
 # Function to fetch article content and summarize it using GPT
 def summarize_article(request):

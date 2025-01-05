@@ -35,7 +35,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -148,24 +147,58 @@ USE_TZ = True
 # settings.py
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
         },
     },
-    'loggers': {
-        'django': {
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",  # Only log messages with INFO or higher
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "file": {
+            "level": "WARNING",  # Log WARNING and above to a file
+            "class": "logging.FileHandler",
+            "filename": "django_warnings.log",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",  # Filter out DEBUG logs from Django internals
+            "propagate": True,
+        },
+        "django.server": {
+            "handlers": ["console"],
+            "level": "ERROR",  # Only log server errors to the console
+            "propagate": False,
+        },
+        "django.db.backends": {
+            "handlers": ["console"],
+            "level": "ERROR",  # Log only database errors
+            "propagate": False,
+        },
+     'Cybertea': { 
             'handlers': ['console'],
             'level': 'DEBUG',
         },
-        # You can add your app logger here
-        'Cybertea': {  # Replace 'your_app_name' with the actual app name
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
+}
+
 }
 
 # Static files (CSS, JavaScript, Images)
@@ -178,6 +211,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
-
-

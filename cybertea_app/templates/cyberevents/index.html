@@ -21,19 +21,24 @@
         {% endfor %}
     </div>
     <br>
+    
     <div class="news-section">
         <h3>☕ News from The Hacker News</h3>
-        {% for hn in hackernews_news %}
-            <div class="news-item">
-                <h5><a href="{{ hn.url }}" target="_blank">{{ hn.title }}</a>
-                    <button class="summary-button" data-url="{{ hn.url }}">Go</button>
-                </h5>
-                <hr>
-            </div>
-        {% endfor %}
+        {% if hackernews_news %}
+            {% for hn in hackernews_news %}
+                <div class="news-item">
+                    <h5>
+                        <a href="{{ hn.url }}" target="_blank">{{ hn.title }}</a>
+                        <button class="summary-button" data-url="{{ hn.url }}">Go</button>
+                    </h5>
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No news available at the moment.</p>
+        {% endif %}
     </div>
-</div>
-
+    
 <!-- Modal for showing summary -->
 <div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
     <div class="modal-dialog">

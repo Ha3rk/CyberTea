@@ -1,37 +1,26 @@
 {% extends './base.html' %}
+{% load static %}
 
 {% block title %}CVE Details{% endblock %}
 
 {% block content %}
 <main>
     <section>
-        <h2>Incident Details</h2>
-        {% if cve %}
-            <p><strong>ID:</strong> {{ cve.id }}</p>
-            <p><strong>Summary:</strong> {{ cve.summary }}</p>
-            <p><strong>CVSS Score:</strong> {{ cve.cvss }}</p>
-            <p><strong>Published:</strong> {{ cve.Published }}</p>
-            <p><strong>Modified:</strong> {{ cve.Modified }}</p>
+        <h1>CVE Details</h1>
 
-            {% if cve.nvd_details %}
-                <h2>NVD Details</h2>
-                <ul>
-                    {% for item in cve.nvd_details %}
-                        <li>{{ item }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No additional data available from NVD.</p>
-            {% endif %}
-
-            <h2>Cybertea Stats</h2>
-            <div>
-                <pre>{{ ai_generated_summary }}</pre>
-            </div>
+        {% if cve_data.error %}
+            <p>Error: {{ cve_data.error }}</p>
         {% else %}
-            <p>No details available for this CVE.</p>
+            <h2>{{ cve_data.id }}</h2>
+            <p><strong>Description:</strong> {{ cve_data.description }}</p>
+            <p><strong>Published Date:</strong> {{ cve_data.Published }}</p>
+            <p><strong>Last Modified:</strong> {{ cve_data.LastModified }}</p>
         {% endif %}
-        <a href="{% url 'recent_cves' %}">Back to Recent CVEs</a>
+
+        <h3>AI-Generated Analysis</h3>
+        <p>{{ ai_generated_summary }}</p>
+
+        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve_data.id }}" target="_blank">View on CVE wbesite</a>
     </section>
 </main>
 {% endblock %}
