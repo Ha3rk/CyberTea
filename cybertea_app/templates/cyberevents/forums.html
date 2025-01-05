@@ -11,6 +11,33 @@
         </form>
     </div>
 
+    <!-- Search Results for Posts -->
+    <div class="subforum">
+        {% if posts %}
+            <div class="subforum-title">
+                <h2>Posts</h2>
+            </div>
+
+            {% for post in posts %}
+                <div class="subforum-row">
+                    <div class="subforum-description subforum-column">
+                        <h4><a href="{{ post.get_url }}">{{ post.title }}</a></h4>
+                        <!-- Ensure no HTML tags are shown and truncate the content -->
+                        <p>{{ post.content|truncatewords:30|striptags }}</p> <!-- Strip tags and truncate content -->
+                    </div>
+                    <div class="subforum-info subforum-column">
+                        <span>Posted by <a href="">{{ post.user.fullname|title }}</a></span>
+                        <br><small>{{ post.date|date }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="subforum-title">
+                <h3>No search result yet.</h3>
+            </div>
+        {% endif %}
+    </div>
+
     <div class="main_forum">
         {% if forums %}
             <div class="main_forum-title">
@@ -46,32 +73,6 @@
         {% endif %}
     </div>
 
-    <!-- Search Results for Posts -->
-    <div class="subforum">
-        {% if posts %}
-            <div class="subforum-title">
-                <h2>Posts</h2>
-            </div>
-
-            {% for post in posts %}
-                <div class="subforum-row">
-                    <div class="subforum-description subforum-column">
-                        <h4><a href="{{ post.get_url }}">{{ post.title }}</a></h4>
-                        <!-- Ensure no HTML tags are shown and truncate the content -->
-                        <p>{{ post.content|truncatewords:30|striptags }}</p> <!-- Strip tags and truncate content -->
-                    </div>
-                    <div class="subforum-info subforum-column">
-                        <span>Posted by <a href="">{{ post.user.fullname|title }}</a></span>
-                        <br><small>{{ post.date|date }}</small>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <div class="subforum-title">
-                <h3>No posts found.</h3>
-            </div>
-        {% endif %}
-    </div>
 </div>
 
 <!-- Forum Info -->
