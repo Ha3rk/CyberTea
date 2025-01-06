@@ -375,3 +375,253 @@ WARNING 2025-01-05 20:59:50,420 log Not Found: /favicon.ico
 WARNING 2025-01-05 21:01:30,623 log Not Found: /favicon.ico
 WARNING 2025-01-05 21:04:20,138 log Not Found: /favicon.ico
 WARNING 2025-01-05 21:05:45,177 log Not Found: /favicon.ico
+WARNING 2025-01-05 23:28:15,373 log Not Found: /favicon.ico
+WARNING 2025-01-05 23:31:15,587 log Not Found: /favicon.ico
+WARNING 2025-01-05 23:32:37,234 log Not Found: /favicon.ico
+WARNING 2025-01-05 23:33:24,174 log Not Found: /favicon.ico
+WARNING 2025-01-05 23:36:48,446 log Not Found: /favicon.ico
+ERROR 2025-01-05 23:36:54,367 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-aac0f06dc7esm2181979666b.193 - gsmtp')
+WARNING 2025-01-05 23:45:54,525 log Not Found: /favicon.ico
+ERROR 2025-01-05 23:46:32,338 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-aac0efe41a6sm2209176466b.102 - gsmtp')
+ERROR 2025-01-05 23:47:19,964 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor 4fb4d7f45d1cf-5d80675a72asm22185718a12.8 - gsmtp')
+ERROR 2025-01-05 23:49:34,230 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor a640c23a62f3a-aac0f0652a7sm2182857466b.174 - gsmtp')
+ERROR 2025-01-05 23:50:51,417 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-aac0f01608fsm2169346666b.150 - gsmtp')
+WARNING 2025-01-05 23:52:42,085 log Not Found: /favicon.ico
+ERROR 2025-01-05 23:52:43,961 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor a640c23a62f3a-aac0f06c654sm2203191166b.185 - gsmtp')
+ERROR 2025-01-05 23:57:43,420 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor a640c23a62f3a-aac0f013946sm2200414666b.136 - gsmtp')
+ERROR 2025-01-05 23:58:45,437 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-5d80675ab3bsm22351844a12.5 - gsmtp')
+WARNING 2025-01-06 00:00:50,401 log Not Found: /favicon.ico
+WARNING 2025-01-06 00:01:49,497 log Forbidden (CSRF token from POST incorrect.): /password_reset/
+ERROR 2025-01-06 00:02:03,176 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor a640c23a62f3a-aac0efe41f0sm2160549166b.114 - gsmtp')
+ERROR 2025-01-06 00:09:18,078 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-aac0e82f178sm2165997466b.38 - gsmtp')
+ERROR 2025-01-06 00:13:02,850 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-5d80679f0e4sm22323370a12.42 - gsmtp')
+ERROR 2025-01-06 00:14:42,491 forms Failed to send password reset email to 6
+Traceback (most recent call last):
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/home/kali/CyberTea App/cyberteaenv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 95, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-aac0e82f621sm2176655066b.40 - gsmtp')
+WARNING 2025-01-06 00:20:15,543 log Not Found: /favicon.ico
