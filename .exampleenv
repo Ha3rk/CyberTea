@@ -1,6 +1,10 @@
-SECRET_KEY = 'django-insecure-+8-w(xs^u3ccccccccccd9=k000000000000000000004k5kh+7678ceit888888888888888uyi&psap'
+SECRET_KEY = 'django-insecure-+xs^u3ccccccccccd9=k000000000000000000004k5kh+7678ceit888888888888888uyi&psap'
 
-OPENAI_API_KEY="sk-proj-9=k000000000000000000004k5kh+7678ceit88888888888"
+OPENAI_API_KEY="sk-blocj-9=k000000000000000000004k5kh+7678ceit88888888888"
+
+EMAIL_HOST_USER = 'example@gmail.com'
+EMAIL_HOST_PASSWORD = 'p@ssword'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

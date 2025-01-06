@@ -2,12 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1 style="text-align:center; margin-block:50px; color:red;">Hey {{user}}, Write something</h1>
+
+{% if user.is_authenticated %}
+<h2 style="text-align:center; margin-block:50px; color:rgb(108, 59, 170);">Hey {{user}}, What's on your mind?</h2>
 
 <form method="POST" style="margin-left:150px;">
     {% csrf_token %}    
     {{ form|crispy }}
     <input type="submit" value="Save"  style="margin-block:50px;">
 </form>
+{% else %}
+<h2>Hey There! Please login to proceed </h2> 
+
+<h3><a href="{% url 'login' %}">Click Here</a></h3>
+{% endif %}
 
 {% endblock content %}

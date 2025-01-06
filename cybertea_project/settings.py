@@ -34,7 +34,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 ALLOWED_HOSTS = []
-
+#FOR PRODUCTION 
+#ALLOWED_HOSTS = [ "http://localhost:8000",   "http://127.0.0.1:8000",]
 # Application definition
 
 INSTALLED_APPS = [
@@ -208,9 +209,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'greenpunctuations@gmail.com'
-EMAIL_HOST_PASSWORD = 'guidemafyg wtzm xvwb rgmh ail1'''
-
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'default-host-user')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'default-host-password')
+'''
 
 
 
